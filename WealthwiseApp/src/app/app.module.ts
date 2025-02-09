@@ -9,6 +9,8 @@ import { RegisterComponent } from './Component/register/register.component';
 import { LandingPageComponent } from './Component/landing-page/landing-page.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
+import { ReportComponent } from './Component/report/report.component';
+import { NgChartsModule } from 'ng2-charts';
 
 @NgModule({
   declarations: [
@@ -16,13 +18,15 @@ import { HttpClientModule } from '@angular/common/http';
     HomeComponent,
     LoginComponent,
     RegisterComponent,
-    LandingPageComponent
+    LandingPageComponent,
+    ReportComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     ReactiveFormsModule,
-    HttpClientModule
+    HttpClientModule,
+    NgChartsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

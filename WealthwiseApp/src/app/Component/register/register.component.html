@@ -1,0 +1,58 @@
+<!-- Register Form -->
+<div class="container-fluid d-flex bg-prop">
+  <div class="register-container" *ngIf="!showOtpForm">
+    <div class="card shadow-lg p-4">
+      <h2 class="text-center mb-4">Register</h2>
+      <form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
+        
+        <!-- Email Field -->
+        <div class="form-group mb-3">
+          <label for="email" class="form-label">Email</label>
+          <input id="email" class="form-control" formControlName="email" type="email" placeholder="Enter your email" />
+          <div class="alert alert-danger mt-2 py-1" *ngIf="registerForm.controls['email'].errors && (registerForm.controls['email'].dirty || registerForm.controls['email'].touched)">
+            <p *ngIf="registerForm.controls['email'].errors?.['required']" class="mb-0">Field is Required</p>
+            <p *ngIf="registerForm.controls['email'].errors?.['pattern']" class="mb-0">Enter a valid Email Address</p>
+          </div>
+        </div>
+  
+        <!-- Password Field -->
+        <div class="form-group mb-3">
+          <label for="password" class="form-label">Password</label>
+          <input id="password" class="form-control" formControlName="password" type="password" placeholder="Enter your password" />
+          <div class="alert alert-danger mt-2 py-1" *ngIf="registerForm.controls['password'].errors && (registerForm.controls['password'].dirty || registerForm.controls['password'].touched)">
+            <p *ngIf="registerForm.controls['password'].errors?.['required']" class="mb-0">Field is Required</p>
+            <p *ngIf="registerForm.controls['password'].errors?.['minlength']" class="mb-0">Password must be at least 6 characters long.</p>
+          </div>
+        </div>
+  
+        <!-- Submit Button -->
+        <button type="submit" class="btn btn-primary w-100" [disabled]="registerForm.invalid">Register</button>
+      </form>
+      <p class="text-center text-success mt-3">{{ message }}</p>
+    </div>
+  </div>
+  
+  <!-- OTP Form -->
+  <div class="otp-container" *ngIf="showOtpForm">
+    <div class="card shadow-lg p-4">
+      <h2 class="text-center mb-4">Verify OTP</h2>
+      <form [formGroup]="otpForm" (ngSubmit)="onVerifyOtp()">
+        
+        <!-- OTP Field -->
+        <div class="form-group mb-3">
+          <label for="otp" class="form-label">Enter OTP</label>
+          <input id="otp" class="form-control" formControlName="otp" type="text" placeholder="Enter OTP" />
+          <div class="alert alert-danger mt-2 py-1" *ngIf="otpForm.controls['otp'].errors && (otpForm.controls['otp'].dirty || otpForm.controls['otp'].touched)">
+            <p *ngIf="otpForm.controls['otp'].errors?.['required']" class="mb-0">Field is Required</p>
+            <p *ngIf="otpForm.controls['otp'].errors?.['minlength']" class="mb-0">OTP must be at least 4 digits</p>
+            <p *ngIf="otpForm.controls['otp'].errors?.['maxlength']" class="mb-0">OTP cannot be longer than 6 digits</p>
+          </div>
+        </div>
+  
+        <!-- Verify OTP Button -->
+        <button type="submit" class="btn btn-success w-100" [disabled]="otpForm.invalid">Verify OTP</button>
+      </form>
+      <p class="text-center text-danger mt-3">{{ message }}</p>
+    </div>
+  </div>
+</div>
